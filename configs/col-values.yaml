@@ -1,0 +1,10 @@
+bachelors : ['Bachelorâ€™s degree', "Bachelor's degree"]
+masters : ['Masterâ€™s degree', "Master's degree" ]
+doctoral : ['Doctoral degree','Professional doctorate' ]
+highschool : ['Some college/university study without earning a bachelorâ€™s degree','I did not complete any formal education past high school',"Some college/university study without earning a bachelor's degree"]
+none :  [ 0,'I prefer not to answer']
+software_engineer : ['Software Developer/Software Engineer','Software Engineer']
+research_engineer : ['Researcher','Scientist/Researcher']
+targets :  ['Data Scientist','Data Analyst','Business Analyst','Software Engineer','Research Scientist', 'Machine Learning Engineer','Data Engineer','Product/Project Manager','Statistician']
+
+
