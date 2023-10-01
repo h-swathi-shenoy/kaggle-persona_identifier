@@ -4,7 +4,7 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 import random
-from pathfinder import PathConfig
+from src.pathfinder import PathConfig
 
 path_obj = PathConfig()
 data_dir = path_obj.data_dir
@@ -176,7 +176,7 @@ def read_persona(persona:str) -> None:
     return persona_dict
 
 
-def show_persona():
+def run_show_persona():
     st.subheader("Top Persona Outlook")
     personas = ['Data Analyst', 'Data Engineer', 'Data Scientist', 'Machine Learning Engineer',
                 'Product/Project Manager', 'Research Scientist', 'Software Engineer', 'Statistician']
