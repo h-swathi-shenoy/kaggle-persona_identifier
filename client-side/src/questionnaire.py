@@ -44,7 +44,8 @@ def all_answered_chk(answer: list) -> bool:
 def api_input_design(api_inputs: list) -> json:
     float_list = [float(i) for i in api_inputs]
     input_arr = np.array(float_list)
-    json_ip = dict(enumerate(input_arr.flatten(), 1))#json.dumps(dict(enumerate(input_arr.flatten(), 1)))
+    #json.dumps(dict(enumerate(input_arr.flatten(), 1)))
+    json_ip = dict(enumerate(input_arr.flatten(), 1))
     return json_ip
 
 
