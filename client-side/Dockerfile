@@ -1,12 +1,14 @@
-FROM public.ecr.aws/lambda/python:3.9
+FROM python:3.9-slim
+ENV REPO_URL=PersonIdentifier
+COPY . $REPO_URL
+WORKDIR $REPO_URL
 
-RUN yum -y install gcc-c++
-
-WORKDIR ${LAMBDA_TASK_ROOT}
-
-COPY . .
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt --no-cache-dir
 
-CMD ["main.main"]
+EXPOSE 8501
+
+ENTRYPOINT [ "streamlit", "run","main.py","--server.port=8501","--server.address=0.0.0.0"]
