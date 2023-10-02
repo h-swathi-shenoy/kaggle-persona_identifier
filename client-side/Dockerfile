@@ -9,6 +9,6 @@ ENV LANG=C.UTF-8
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt --no-cache-dir
 
-EXPOSE 8501
+EXPOSE 8080
 
 ENTRYPOINT [ "streamlit", "run","main.py"]
