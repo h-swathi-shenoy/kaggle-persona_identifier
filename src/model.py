@@ -1,5 +1,4 @@
 import numpy as np
-import typing as t
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 import pandas as pd
@@ -14,6 +13,12 @@ models_dir = current_dir.joinpath('models/artifacts')
 
 
 def train_model(train_data: pd.DataFrame) -> None:
+    """
+    Train a Random Forest Classifier model with hyperparams and save it.
+    Parameters
+    ----------
+    train_data: pd.DataFrame
+    """
     X = train_data.iloc[:, :-1].values
     y = train_data.iloc[:, -1:].to_numpy().ravel()
     params =  {'n_estimators': 463, 'max_depth': 50}
@@ -23,6 +28,16 @@ def train_model(train_data: pd.DataFrame) -> None:
 
 
 def test_model(test_data: pd.DataFrame) -> np.ndarray:
+    """
+    Load the saved model and predict on test set
+    Parameters
+    ----------
+    test_data :pd.DataFrame
+
+    Returns:array
+    -------
+
+    """
     model_file = models_dir.joinpath("Persona-Multiclass.joblib")
     if not model_file.exists():
         return False

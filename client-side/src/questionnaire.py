@@ -11,18 +11,50 @@ col_map = OmegaConf.load(config_dir.joinpath('col-mapping.yaml'))
 
 
 def count_inputs(option: list) -> int:
+    """
+
+    Parameters
+    :param option:List
+    ----------
+    option
+
+    Returns:
+    count of choices selected for a multichoice question.
+    -------
+
+    """
     attempted_qs = [q for q in option if q == True]
     return len(attempted_qs)
 
 
 def on_checkbox_select(chk_input: bool) -> int:
+    """
+    Marks 1 if the question is answered else 0.
+
+    Parameters
+    ----------
+    chk_input : bool
+
+    Returns : int
+    -------
+   """
     if chk_input:
         return 1
     else:
         return 0
 
 
-def question_answer_check(checks: list):
+def question_answer_check(checks: list) -> int:
+    """
+    Check if a particular question is attempted or no. If attempted then increment the variable, else unattempted.
+    Parameters
+    ----------
+    checks : list of multiple choice values for a question.
+
+    Returns
+    -------
+    int
+    """
     answered = 0
     for i in checks:
         if i == 1 or i == True:
@@ -32,6 +64,19 @@ def question_answer_check(checks: list):
 
 
 def all_answered_chk(answer: list) -> bool:
+    """
+    Final attempted check on list of questions before clicking the submit button.
+
+    Parameters
+    ----------
+    answer : List of all questions with values 1 or 0.
+
+    Returns
+    -------
+    all_answered : int
+    1 if all questions attempted else 0.
+
+    """
     all_answered = 0
     for i in answer:
         if i != 1:
@@ -42,14 +87,28 @@ def all_answered_chk(answer: list) -> bool:
 
 
 def api_input_design(api_inputs: list) -> json:
+    """
+    Prepare the inputs to the questionnaire to the Post method for the API.
+    Parameters
+    ----------
+    api_inputs : list
+
+    Returns: json
+
+    Json Inputs to the API.
+    -------
+
+    """
     float_list = [float(i) for i in api_inputs]
     input_arr = np.array(float_list)
-    #json.dumps(dict(enumerate(input_arr.flatten(), 1)))
     json_ip = dict(enumerate(input_arr.flatten(), 1))
     return json_ip
 
 
 def run_questionnaire():
+    """
+    Questionnaire for Look at top persona tab, validates the inputs and send them to the API gateway for persona prediction.
+    """
     st.subheader("Questionnaire")
     st.write(
         f"**1**. What is the highest level of formal education that you have attained/or plan to attain in next 2 years?")

@@ -12,6 +12,16 @@ configs = path_obj.configs_dir
 
 
 def boolean_single_select(onehot: pd.DataFrame) -> str:
+    """
+    Get the column name from on the column index as its a one hot encoded columns
+    Parameters
+    ----------
+    onehot :pd DataFrame
+
+    Returns
+    -------
+    Column name which has the value 1.
+    """
     print(onehot.shape)
     col_shape = onehot.shape[1]
     for i in range(col_shape):
@@ -21,6 +31,17 @@ def boolean_single_select(onehot: pd.DataFrame) -> str:
 
 
 def boolean_multi_select(onehot: pd.DataFrame, col_label : str) -> str:
+    """
+    Format the display of the given questions with labels
+    Parameters
+    ----------
+    onehot: pd.DataFrame
+    col_label :str : Label for the question
+
+    Returns
+    -------
+    Formatted answers for display in the Look at top Persona Tab
+    """
     print(onehot.shape)
     col_shape = onehot.shape[1]
     selected_options = []
@@ -43,6 +64,12 @@ def boolean_multi_select(onehot: pd.DataFrame, col_label : str) -> str:
 
 
 def persona_card(persona:dict) -> None:
+    """
+    Display for Look at Top Person view tab
+    Returns
+    -------
+    object
+    """
     with st.chat_message(name='Q1', avatar='🧑‍💻'):
         st.write(f"**1**. What is the highest level of formal education that you have attained/or plan to attain in next two years?  \n **{persona['education'].name}**")
     with st.chat_message(name='Q2', avatar='🧑‍💻'):
@@ -87,7 +114,26 @@ def persona_card(persona:dict) -> None:
 
     return
 
+
 def handle_counts(ml_count:int, ml_framework:int,cv_algo:int, nlp_algo:int):
+    """
+    Display the correct format for the below questions.
+
+    Parameters
+    ----------
+    ml_count : int - Count of the ml algorithms user knows
+    ml_framework : int - Count of the ml framework user knows
+    cv_algo :int  -  Count of the computer vision algorithms user knows.
+    nlp_algo: int  - Count of the NLP algorithms user knows.
+
+    Returns
+    -------
+    ml_count : int
+    ml_framework : int
+    cv_algo :int
+    nlp_algo: int
+
+    """
     i = random.randint(2, 5)
     ml_count = i
     ml_framework = i
@@ -100,7 +146,18 @@ def handle_activities(activities:str):
     return activities
 
 
-def read_persona(persona:str) -> None:
+def read_persona(persona:str) -> dict:
+    """
+
+    Parameters
+    ----------
+    persona : string
+    Person selected by the user
+
+    Returns :dict
+    -------
+    Dictionary with the answers to the questions for a given Persona.
+    """
     persona_dict = {}
     profile_df = pd.read_csv(data_dir.joinpath('Profiles.csv'),sep=',')
     test_df = pd.read_csv(data_dir.joinpath('Kaggle-Responses-Test.csv'))
@@ -177,6 +234,9 @@ def read_persona(persona:str) -> None:
 
 
 def run_show_persona():
+    """
+    Show the profile of the top Personas based on the profile select
+    """
     st.subheader("Top Persona Outlook")
     personas = ['Data Analyst', 'Data Engineer', 'Data Scientist', 'Machine Learning Engineer',
                 'Product/Project Manager', 'Research Scientist', 'Software Engineer', 'Statistician']

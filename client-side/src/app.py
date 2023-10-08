@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Body
+from fastapi import FastAPI,Body
 import numpy as np
 from model import test_model, convert
 import uvicorn
